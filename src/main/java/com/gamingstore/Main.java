@@ -8,7 +8,8 @@ public class Main {
 
     static String PASSWORD = "default";
     static Scanner SCANNER = new Scanner(System.in);
-    static String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+    static String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    static String FIRST_AND_LAST_NAME_PATTERN = "^[a-zA-Z-]{2,}$"; //I used two letters for names like "Ян"
 
     public static void main(String[] args) {
         run();
@@ -45,22 +46,32 @@ public class Main {
         String email = SCANNER.nextLine();
 
         if (isEmailValid(email)) {
-            Client client = buildClient(email);
-            System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
+            System.out.print("First name: ");
+            String firstName = SCANNER.nextLine();
+
+            if (isNamesValid(firstName)) {
+                System.out.print("Last name: ");
+                String lastName = SCANNER.nextLine();
+
+                if (isNamesValid(lastName)) {
+                    Client client = buildClient(email, firstName, lastName);
+                    System.out.println("New client: " + client.firstName + " " + client.lastName + " (" + client.email + ")");
+                } else {
+                    System.out.println("Provided last name is invalid.");
+                }
+            } else {
+                System.out.println("Provided first name is invalid.");
+            }
         } else {
             System.out.println("Provided email is invalid.");
         }
     }
 
-    static Client buildClient(String email) {
+    static Client buildClient(String email, String firstName, String lastName) {
         Client client = new Client();
         client.email = email;
-
-        System.out.print("First name: ");
-        client.firstName = SCANNER.nextLine();
-
-        System.out.print("Last name: ");
-        client.lastName = SCANNER.nextLine();
+        client.firstName = firstName;
+        client.lastName = lastName;
 
         return client;
     }
@@ -68,6 +79,12 @@ public class Main {
     static boolean isEmailValid(String email) {
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    static boolean isNamesValid(String names) {
+        Pattern pattern = Pattern.compile(FIRST_AND_LAST_NAME_PATTERN);
+        Matcher matcher = pattern.matcher(names);
         return matcher.matches();
     }
 }
