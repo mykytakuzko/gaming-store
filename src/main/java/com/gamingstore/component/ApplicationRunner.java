@@ -7,8 +7,8 @@ import main.java.com.gamingstore.service.ClientService;
 import main.java.com.gamingstore.service.OrderService;
 
 public class ApplicationRunner {
-    private ClientService clientService = new ClientService();
-    private OrderService orderService = new OrderService();
+    private final ClientService clientService = new ClientService();
+    private final OrderService orderService = new OrderService();
 
     public void run() {
         if (Authenticator.auth()) {
@@ -24,6 +24,8 @@ public class ApplicationRunner {
                 client.setOrder(order);
                 order.setClient(client.getFirstName() + " " + client.getLastName());
                 System.out.println("Order has been added.");
+
+                System.out.println(client);
             }
         }
     }
