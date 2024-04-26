@@ -5,7 +5,7 @@ import main.java.com.gamingstore.model.Fan;
 import main.java.com.gamingstore.model.Order;
 
 public class OrderService {
-    private static String FAN_TYPE = "Fan";
+    private static final String FAN_TYPE = "Fan";
 
     public Order registerNewOrder() {
         Order order = new Order();

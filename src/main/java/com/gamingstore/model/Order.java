@@ -1,5 +1,7 @@
 package main.java.com.gamingstore.model;
 
+import java.util.Objects;
+
 public class Order {
     private String productName;
     private String totalNumber;
@@ -7,6 +9,29 @@ public class Order {
     private String cityForDelivery;
     private String numberOfDepartment;
     private String client;
+
+    @Override
+    public String toString() {
+        return "{productName = " + productName
+                + ", totalNumber = " + totalNumber
+                + ", kindOfPay = " + kindOfPay
+                + ", cityForDelivery = " + cityForDelivery
+                + ", numberOfDepartment = " + numberOfDepartment
+                + "}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(productName, order.productName) && Objects.equals(totalNumber, order.totalNumber) && Objects.equals(kindOfPay, order.kindOfPay) && Objects.equals(cityForDelivery, order.cityForDelivery) && Objects.equals(numberOfDepartment, order.numberOfDepartment) && Objects.equals(client, order.client);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productName, totalNumber, kindOfPay, cityForDelivery, numberOfDepartment, client);
+    }
 
     public String getProductName() {
         return productName;
