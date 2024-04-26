@@ -14,18 +14,20 @@ public class ApplicationRunner {
         if (Authenticator.auth()) {
             Client client = clientService.registerNewClient();
 
-            System.out.print("Do you want to add an order? (Yes / No): ");
-            String answer = Main.SCANNER.nextLine();
+            if (client != null) {
+                System.out.print("Do you want to add an order? (Yes / No): ");
+                String answer = Main.SCANNER.nextLine();
 
-            if (client != null && answer.equals("Yes")) {
-                System.out.println("Adding a new order.");
+                if (answer.equals("Yes")) {
+                    System.out.println("Adding a new order.");
 
-                Order order = orderService.registerNewOrder();
-                client.setOrder(order);
-                order.setClient(client.getFirstName() + " " + client.getLastName());
-                System.out.println("Order has been added.");
+                    Order order = orderService.registerNewOrder();
+                    client.setOrder(order);
+                    order.setClient(client.getFirstName() + " " + client.getLastName());
+                    System.out.println("Order has been added.");
 
-                System.out.println(client);
+                    System.out.println(client);
+                }
             }
         }
     }
