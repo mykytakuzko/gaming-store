@@ -2,7 +2,7 @@ package main.java.com.gamingstore.model;
 
 import java.util.Objects;
 
-public class Order {
+public abstract class Order {
     private String productName;
     private String totalNumber;
     private String kindOfPay;

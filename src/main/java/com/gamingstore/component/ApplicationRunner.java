@@ -22,9 +22,11 @@ public class ApplicationRunner {
                     System.out.println("Adding a new order.");
 
                     Order order = orderService.registerNewOrder();
-                    client.setOrder(order);
-                    order.setClient(client.getFirstName() + " " + client.getLastName());
-                    System.out.println("Order has been added.");
+                    if (order != null) {
+                        client.setOrder(order);
+                        order.setClient(client.getFirstName() + " " + client.getLastName());
+                        System.out.println("Order has been added.");
+                    }
 
                     System.out.println(client);
                 }
