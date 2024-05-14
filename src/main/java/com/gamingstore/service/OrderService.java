@@ -3,48 +3,29 @@ package main.java.com.gamingstore.service;
 import main.java.com.gamingstore.Main;
 import main.java.com.gamingstore.model.Fan;
 import main.java.com.gamingstore.model.Order;
+import main.java.com.gamingstore.model.Triggers;
 
 public class OrderService {
     private static final String FAN_TYPE = "Fan";
+    private static final String TRIGGERS_TYPE = "Triggers";
 
     public Order registerNewOrder() {
-        Order order = new Order();
+        Order order = null;
 
-        System.out.print("Fan / Triggers / Other: ");
+        System.out.print("Type (Fan / Triggers): ");
         String type = Main.SCANNER.nextLine();
 
-        if (FAN_TYPE.equals(type)) {
-            order = buildFan();
-        } else {
+        if (FAN_TYPE.equals(type) || TRIGGERS_TYPE.equals(type)) {
             order = buildOrder(type);
+        } else {
+            System.out.println("Unknown type: " + type);
         }
 
         return order;
     }
 
-    private Fan buildFan() {
-        Order order = buildOrder(FAN_TYPE);
-        Fan fan = orderToFan(order);
-
-        System.out.print("Kind of power supply: ");
-        fan.setKindOfPowerSupply(Main.SCANNER.nextLine());
-
-        return fan;
-    }
-
-    private Fan orderToFan(Order order) {
-        Fan fan = new Fan();
-        fan.setProductName(order.getProductName());
-        fan.setTotalNumber(order.getTotalNumber());
-        fan.setKindOfPay(order.getKindOfPay());
-        fan.setCityForDelivery(order.getCityForDelivery());
-        fan.setNumberOfDepartment(order.getNumberOfDepartment());
-
-        return fan;
-    }
-
     private Order buildOrder(String type) {
-        Order order = new Order();
+        Order order = type.equals(TRIGGERS_TYPE) ? new Triggers() : new Fan();
         order.setProductName(type);
 
         System.out.print("Total number: ");
@@ -58,6 +39,11 @@ public class OrderService {
 
         System.out.print("Number of department: ");
         order.setNumberOfDepartment(Main.SCANNER.nextLine());
+
+        if (type.equals(FAN_TYPE)) {
+            System.out.print("Kind of power supply: ");
+            ((Fan) order).setKindOfPowerSupply(Main.SCANNER.nextLine());
+        }
 
         return order;
     }
