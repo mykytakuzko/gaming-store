@@ -29,9 +29,10 @@ public class OrderService {
         order.setProductName(type);
 
         System.out.print("Total number: ");
-        order.setTotalNumber(Main.SCANNER.nextLine());
+        order.setTotalNumber(Main.SCANNER.nextInt());
+        Main.SCANNER.nextLine();
 
-        System.out.print("Kind of pay: ");
+        System.out.print("Kind of pay (Card / Cash / Credit): ");
         order.setKindOfPay(Main.SCANNER.nextLine());
 
         System.out.print("City for delivery: ");
