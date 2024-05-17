@@ -3,8 +3,11 @@ package main.java.com.gamingstore.model;
 import java.util.Objects;
 
 public abstract class Order {
+    public static final String CARD = "Card";
+    public static final String CASH = "Cash";
+    public static final String CREDIT = "Credit";
     private String productName;
-    private String totalNumber;
+    private int totalNumber;
     private String kindOfPay;
     private String cityForDelivery;
     private String numberOfDepartment;
@@ -41,11 +44,11 @@ public abstract class Order {
         this.productName = productName;
     }
 
-    public String getTotalNumber() {
+    public int getTotalNumber() {
         return totalNumber;
     }
 
-    public void setTotalNumber(String totalNumber) {
+    public void setTotalNumber(int totalNumber) {
         this.totalNumber = totalNumber;
     }
 

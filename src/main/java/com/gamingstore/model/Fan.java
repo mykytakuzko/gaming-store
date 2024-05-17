@@ -5,6 +5,14 @@ import java.util.Objects;
 public class Fan extends Order {
     private String kindOfPowerSupply;
 
+    public Fan() {}
+    public Fan(int totalNumber) {
+        setTotalNumber(totalNumber);
+    }
+    public Fan(String kindOfPay) {
+        setKindOfPay(kindOfPay);
+    }
+
     public String toString() {
         return super.toString().substring(0, super.toString().length() - 1)
                 + ", kindOfPowerSupply = " + kindOfPowerSupply + "}";
