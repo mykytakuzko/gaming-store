@@ -3,14 +3,12 @@ package main.java.com.gamingstore.model;
 import java.util.Objects;
 
 public abstract class Order {
-    public static final String CARD = "Card";
-    public static final String CASH = "Cash";
-    public static final String CREDIT = "Credit";
     private String productName;
     private int totalNumber;
-    private String kindOfPay;
+    private KindOfPay kindOfPay;
     private String cityForDelivery;
     private String numberOfDepartment;
+    private DeliverySpeed deliverySpeed;
     private String client;
 
     @Override
@@ -20,6 +18,7 @@ public abstract class Order {
                 + ", kindOfPay = " + kindOfPay
                 + ", cityForDelivery = " + cityForDelivery
                 + ", numberOfDepartment = " + numberOfDepartment
+                + ", deliverySpeed = " + deliverySpeed
                 + "}";
     }
 
@@ -28,12 +27,18 @@ public abstract class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(productName, order.productName) && Objects.equals(totalNumber, order.totalNumber) && Objects.equals(kindOfPay, order.kindOfPay) && Objects.equals(cityForDelivery, order.cityForDelivery) && Objects.equals(numberOfDepartment, order.numberOfDepartment) && Objects.equals(client, order.client);
+        return Objects.equals(productName, order.productName)
+                && Objects.equals(totalNumber, order.totalNumber)
+                && Objects.equals(kindOfPay, order.kindOfPay)
+                && Objects.equals(cityForDelivery, order.cityForDelivery)
+                && Objects.equals(numberOfDepartment, order.numberOfDepartment)
+                && Objects.equals(deliverySpeed, order.deliverySpeed)
+                && Objects.equals(client, order.client);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productName, totalNumber, kindOfPay, cityForDelivery, numberOfDepartment, client);
+        return Objects.hash(productName, totalNumber, kindOfPay, cityForDelivery, numberOfDepartment,deliverySpeed, client);
     }
 
     public String getProductName() {
@@ -52,11 +57,11 @@ public abstract class Order {
         this.totalNumber = totalNumber;
     }
 
-    public String getKindOfPay() {
+    public KindOfPay getKindOfPay() {
         return kindOfPay;
     }
 
-    public void setKindOfPay(String kindOfPay) {
+    public void setKindOfPay(KindOfPay kindOfPay) {
         this.kindOfPay = kindOfPay;
     }
 
@@ -76,11 +81,53 @@ public abstract class Order {
         this.numberOfDepartment = numberOfDepartment;
     }
 
+    public DeliverySpeed getDeliverySpeed() {
+        return deliverySpeed;
+    }
+
+    public void setDeliverySpeed(DeliverySpeed deliverySpeed) {
+        this.deliverySpeed = deliverySpeed;
+    }
+
     public String getClient() {
         return client;
     }
 
     public void setClient(String client) {
         this.client = client;
+    }
+
+    public enum KindOfPay {
+        CARD(1),
+        CASH(2),
+        CREDIT(3),
+        UNKNOWN(0);
+
+        private final int value;
+
+        KindOfPay(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
+    public enum DeliverySpeed {
+        FAST(1),
+        STANDARD_PLUS(2),
+        STANDARD(3),
+        UNKNOWN(0);
+
+        private final int value;
+
+        DeliverySpeed(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 }

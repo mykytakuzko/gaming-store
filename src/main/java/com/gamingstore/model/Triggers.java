@@ -5,7 +5,10 @@ public class Triggers extends Order {
     public Triggers(int totalNumber) {
         setTotalNumber(totalNumber);
     }
-    public Triggers(String kindOfPay) {
+    public Triggers(DeliverySpeed deliverySpeed) {
+        setDeliverySpeed(deliverySpeed);
+    }
+    public Triggers(KindOfPay kindOfPay) {
         setKindOfPay(kindOfPay);
     }
 }

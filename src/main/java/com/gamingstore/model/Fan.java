@@ -9,8 +9,11 @@ public class Fan extends Order {
     public Fan(int totalNumber) {
         setTotalNumber(totalNumber);
     }
-    public Fan(String kindOfPay) {
+    public Fan(KindOfPay kindOfPay) {
         setKindOfPay(kindOfPay);
+    }
+    public Fan(DeliverySpeed deliverySpeed) {
+        setDeliverySpeed(deliverySpeed);
     }
 
     public String toString() {
@@ -39,4 +42,6 @@ public class Fan extends Order {
     public void setKindOfPowerSupply(String kindOfPowerSupply) {
         this.kindOfPowerSupply = kindOfPowerSupply;
     }
+
+
 }

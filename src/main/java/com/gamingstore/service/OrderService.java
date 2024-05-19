@@ -32,14 +32,19 @@ public class OrderService {
         order.setTotalNumber(Main.SCANNER.nextInt());
         Main.SCANNER.nextLine();
 
-        System.out.print("Kind of pay (Card / Cash / Credit): ");
-        order.setKindOfPay(Main.SCANNER.nextLine());
+        System.out.print("Kind of pay (CARD / CASH / CREDIT): ");
+        String kindOfPay = Main.SCANNER.nextLine();
+        order.setKindOfPay(Order.KindOfPay.valueOf(kindOfPay));
 
         System.out.print("City for delivery: ");
         order.setCityForDelivery(Main.SCANNER.nextLine());
 
         System.out.print("Number of department: ");
         order.setNumberOfDepartment(Main.SCANNER.nextLine());
+
+        System.out.print("Delivery speed: ");
+        String deliverySpeed = Main.SCANNER.nextLine();
+        order.setDeliverySpeed(Order.DeliverySpeed.valueOf(deliverySpeed));
 
         if (type.equals(FAN_TYPE)) {
             System.out.print("Kind of power supply: ");
