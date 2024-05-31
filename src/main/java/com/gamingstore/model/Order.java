@@ -1,8 +1,11 @@
 package main.java.com.gamingstore.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public abstract class Order {
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
     private String productName;
     private int totalNumber;
     private KindOfPay kindOfPay;
@@ -10,6 +13,7 @@ public abstract class Order {
     private String numberOfDepartment;
     private DeliverySpeed deliverySpeed;
     private String client;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
     public String toString() {
@@ -19,6 +23,7 @@ public abstract class Order {
                 + ", cityForDelivery = " + cityForDelivery
                 + ", numberOfDepartment = " + numberOfDepartment
                 + ", deliverySpeed = " + deliverySpeed
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "}";
     }
 
@@ -27,18 +32,19 @@ public abstract class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Objects.equals(productName, order.productName)
-                && Objects.equals(totalNumber, order.totalNumber)
-                && Objects.equals(kindOfPay, order.kindOfPay)
+        return totalNumber == order.totalNumber && Objects.equals(productName, order.productName)
+                && kindOfPay == order.kindOfPay
                 && Objects.equals(cityForDelivery, order.cityForDelivery)
                 && Objects.equals(numberOfDepartment, order.numberOfDepartment)
-                && Objects.equals(deliverySpeed, order.deliverySpeed)
-                && Objects.equals(client, order.client);
+                && deliverySpeed == order.deliverySpeed
+                && Objects.equals(client, order.client)
+                && Objects.equals(registrationDate, order.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productName, totalNumber, kindOfPay, cityForDelivery, numberOfDepartment,deliverySpeed, client);
+        return Objects.hash(productName, totalNumber, kindOfPay, cityForDelivery, numberOfDepartment, deliverySpeed
+                , client, registrationDate);
     }
 
     public String getProductName() {

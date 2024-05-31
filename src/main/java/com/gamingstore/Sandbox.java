@@ -1,5 +1,6 @@
 package main.java.com.gamingstore;
 
+import main.java.com.gamingstore.model.Client;
 import main.java.com.gamingstore.model.Fan;
 import main.java.com.gamingstore.model.Order;
 import main.java.com.gamingstore.model.Triggers;
@@ -9,9 +10,11 @@ import java.util.Comparator;
 
 public class Sandbox {
     public static void main(String[] args) {
-        totalNumberSort();
-        kindOfPaySort();
-        deliverySpeedSort();
+//        totalNumberSort();
+//        kindOfPaySort();
+//        deliverySpeedSort();
+        Order order = null;
+        System.out.println(order);
     }
 
     private static void totalNumberSort() {
