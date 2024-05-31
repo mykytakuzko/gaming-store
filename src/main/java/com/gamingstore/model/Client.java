@@ -1,13 +1,16 @@
 package main.java.com.gamingstore.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Client {
-
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
     private String firstName;
     private String lastName;
     private String email;
     private Order order;
+    private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
     public String toString() {
@@ -15,6 +18,7 @@ public class Client {
                 + "\n\tfirstName = " + firstName
                 + ", lastName = " + lastName
                 + ", email = " + email
+                + ", registrationDate = " + registrationDate.format(FORMATTER)
                 + "\n\torder = " + order
                 + "\n}";
     }
@@ -27,12 +31,13 @@ public class Client {
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(email, client.email)
-                && Objects.equals(order, client.order);
+                && Objects.equals(order, client.order)
+                && Objects.equals(registrationDate, client.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, order);
+        return Objects.hash(firstName, lastName, email, order, registrationDate);
     }
 
     public String getFirstName() {

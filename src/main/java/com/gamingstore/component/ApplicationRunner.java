@@ -28,9 +28,11 @@ public class ApplicationRunner {
                         System.out.println("Order has been added.");
                     }
 
-                    System.out.println(client);
+                    //System.out.println(client);
                 }
             }
+
+            System.out.println(client);
         }
     }
 }
