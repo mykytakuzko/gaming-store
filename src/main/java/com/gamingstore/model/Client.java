@@ -2,6 +2,8 @@ package main.java.com.gamingstore.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Client {
@@ -9,7 +11,7 @@ public class Client {
     private String firstName;
     private String lastName;
     private String email;
-    private Order order;
+    private List<Order> orders = new ArrayList<>();
     private final LocalDateTime registrationDate = LocalDateTime.now();
 
     @Override
@@ -19,7 +21,7 @@ public class Client {
                 + ", lastName = " + lastName
                 + ", email = " + email
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
-                + "\n\torder = " + order
+                + "\n\torders = " + orders
                 + "\n}";
     }
 
@@ -31,13 +33,13 @@ public class Client {
         return Objects.equals(firstName, client.firstName)
                 && Objects.equals(lastName, client.lastName)
                 && Objects.equals(email, client.email)
-                && Objects.equals(order, client.order)
+                && Objects.equals(orders, client.orders)
                 && Objects.equals(registrationDate, client.registrationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email, order, registrationDate);
+        return Objects.hash(firstName, lastName, email, orders, registrationDate);
     }
 
     public String getFirstName() {
@@ -64,11 +66,15 @@ public class Client {
         this.email = email;
     }
 
-    public Order getOrder() {
-        return order;
+    public List<Order> getOrder() {
+        return orders;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 }
