@@ -19,20 +19,37 @@ public class ApplicationRunner {
                 String answer = Main.SCANNER.nextLine();
 
                 if (answer.equals("Yes")) {
-                    System.out.println("Adding a new order.");
-
-                    Order order = orderService.registerNewOrder();
-                    if (order != null) {
-                        client.setOrder(order);
-                        order.setClient(client.getFirstName() + " " + client.getLastName());
-                        System.out.println("Order has been added.");
-                    }
-
-                    //System.out.println(client);
+                    registerOrders(client);
                 }
-            }
 
-            System.out.println(client);
+                System.out.println(client);
+            }
+        }
+    }
+
+    private void registerOrders(Client client) {
+        boolean continueAddOrders = true;
+
+        while (continueAddOrders) {
+            addOrder(client);
+
+            System.out.print("Do you want to add more orders for the current client? (y/n): ");
+            String answer = Main.SCANNER.nextLine();
+
+            if ("n".equals(answer)) {
+                continueAddOrders = false;
+            }
+        }
+    }
+
+    private void addOrder (Client client) {
+        System.out.println("Adding a new order.");
+
+        Order order = orderService.registerNewOrder();
+        if (order != null) {
+            client.addOrder(order);
+            order.setClient(client.getFirstName() + " " + client.getLastName());
+            System.out.println("Order has been added.");
         }
     }
 }
