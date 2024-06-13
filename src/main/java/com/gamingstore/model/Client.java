@@ -13,6 +13,7 @@ public class Client {
     private String email;
     private List<Order> orders = new ArrayList<>();
     private final LocalDateTime registrationDate = LocalDateTime.now();
+    private Location location;
 
     @Override
     public String toString() {
@@ -21,6 +22,7 @@ public class Client {
                 + ", lastName = " + lastName
                 + ", email = " + email
                 + ", registrationDate = " + registrationDate.format(FORMATTER)
+                + ", location = " + location
                 + "\n\torders = " + orders
                 + "\n}";
     }
@@ -66,15 +68,27 @@ public class Client {
         this.email = email;
     }
 
-    public List<Order> getOrder() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrder(List<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
     public void addOrder(Order order) {
         orders.add(order);
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public enum Location {
+        KYIV, LVIV, ODESA
     }
 }
