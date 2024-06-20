@@ -33,8 +33,19 @@ public class OrderService {
         Main.SCANNER.nextLine();
 
         System.out.print("Kind of pay (CARD / CASH / CREDIT): ");
-        String kindOfPay = Main.SCANNER.nextLine();
-        order.setKindOfPay(Order.KindOfPay.valueOf(kindOfPay));
+
+        Order.KindOfPay kindOfPay;
+        String kindOfPayInput = Main.SCANNER.nextLine();
+
+        try {
+            kindOfPay = Order.KindOfPay.valueOf(kindOfPayInput);
+        } catch (IllegalArgumentException e) {
+            kindOfPay = Order.KindOfPay.UNKNOWN;
+            System.out.println("Unable to parse value: '" + kindOfPayInput
+                    + "'. Using default value: " + Order.KindOfPay.UNKNOWN);
+        }
+
+        order.setKindOfPay(kindOfPay);
 
         System.out.print("City for delivery: ");
         order.setCityForDelivery(Main.SCANNER.nextLine());
@@ -43,8 +54,19 @@ public class OrderService {
         order.setNumberOfDepartment(Main.SCANNER.nextLine());
 
         System.out.print("Delivery speed: ");
-        String deliverySpeed = Main.SCANNER.nextLine();
-        order.setDeliverySpeed(Order.DeliverySpeed.valueOf(deliverySpeed));
+
+        Order.DeliverySpeed deliverySpeed;
+        String deliverySpeedInput = Main.SCANNER.nextLine();
+
+        try {
+            deliverySpeed = Order.DeliverySpeed.valueOf(deliverySpeedInput);
+        } catch (IllegalArgumentException e) {
+            deliverySpeed = Order.DeliverySpeed.UNKNOWN;
+            System.out.println("Unable to parse value: '" + deliverySpeedInput
+                    + "'. Using default value: " + Order.DeliverySpeed.UNKNOWN);
+        }
+
+        order.setDeliverySpeed(deliverySpeed);
 
         if (type.equals(FAN_TYPE)) {
             System.out.print("Kind of power supply: ");
