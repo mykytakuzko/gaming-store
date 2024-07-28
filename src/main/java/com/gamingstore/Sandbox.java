@@ -10,9 +10,6 @@ import java.util.Comparator;
 
 public class Sandbox {
     public static void main(String[] args) {
-//        totalNumberSort();
-//        kindOfPaySort();
-//        deliverySpeedSort();
         Order order = null;
         System.out.println(order);
     }
